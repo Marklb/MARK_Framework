@@ -1,0 +1,73 @@
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <style type="text/css">
+            body{
+                color: white;
+            }
+            #main-div{
+                width: 700px;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 10px;
+                padding-right: 10px;
+                background: #000020;
+            }
+            #top-title{
+                color: #FF3300;
+                background: #00008B;
+                font-size: 60px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                text-align: center;
+                text-shadow: 2px 2px #000000;
+            }
+            .user-image{
+                height: 150px;
+                float: left;
+                margin-right: 10px;
+            }
+        </style>
+        ~% if '$name' in ['Mark', 'Austin', 'Ricky', 'Kayla']
+            ~py valid_user = True
+            ~py user_name = '$name'
+            ~! '<style type="text/css">
+            ~!     body{
+            ~!         background-color: black;
+            ~!     }
+            ~! </style>'
+            title M.A.R.K Framework
+        ~% else
+            ~py valid_user = False
+            ~! '<style type="text/css">
+            ~!     body{
+            ~!         background-color: red;
+            ~!     }
+            ~! </style>'
+            title Unknown person
+        ~% end
+	</head>
+	<body>
+        <div id="main-div" class="basic-border-blue">
+            ~= This is the index page and I am a comment
+            <p id="top-title">MARK Framework</p>
+            ~% if valid_user
+                ~py user_images = {'Mark': 'Mark.png', 'Austin': 'Austin.png', 'Ricky': 'Ricky.png', 'Kayla': 'Kayla.png'}
+                ~py user_image = '<img src="'+user_images[user_name]+'" class="user-image basic-border-blue" alt="User image">'
+                div  {user_image}
+            ~% end
+            ~= This is the user page
+            <div>
+            ~% if valid_user
+                h1 Hello $name!
+                h1 You are viewing page $page_num
+            ~% else
+                h1 I do not know a $name!, Who Are You!
+                h1 And why do you want page $page_num
+            ~% end
+            </div>
+        </div>
+	</body>
+	~= I'll comment here also
+</html>

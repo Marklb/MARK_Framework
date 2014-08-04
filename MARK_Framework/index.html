@@ -1,0 +1,79 @@
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <style type="text/css">
+            body{
+                background-color: black;
+                color: white;
+            }
+            #main-div{
+                width: 700px;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 10px;
+                padding-right: 10px;
+                background: #000020;
+            }
+            #top-title{
+                color: #FF3300;
+                background: #00008B;
+                font-size: 60px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                text-align: center;
+                text-shadow: 2px 2px #000000;
+            }
+            #desc-div{
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 50px;
+            }
+        </style>
+		<title>M.A.R.K Framework</title>
+	</head>
+	<body>
+        ~% if $is_logged_in
+            ~! '<form method="POST" action="logout"><p class="submit"><input type="submit" value="Logout"></p></form>'
+            p Logged in as $username
+        ~% else
+            ~! '<a href="register" >Register</a><br>'
+            ~! '<a href="login" >Login</a>'
+        ~% end
+        <div id="main-div" class="basic-border-blue">
+            ~= This is the index page and I am a comment
+            <p id="top-title">MARK Framework</p>
+            <div id="desc-div" class="basic-border-blue">
+                ~% if True
+                    h1 Using the framework
+                    p \~= (Comment)
+                    p \~! (Ignore formatting)
+                    p \~% (Code start)
+                    p \~% end (Code end)
+                    p \{variable_name} (insert a variable)
+                    p \~py (execute a python line)
+                ~% end
+            </div>
+            ~% if False
+                ~= This is a comment in the template
+                p The first condition was True!
+            ~% else
+                p The first condition was False.
+            ~% end
+            ~% if 3 == 3
+                ~py thing = 567
+                h1 This is the next condition! {thing}
+                p It was true with 2 lines!
+            ~% end
+            ~% if thing == 567
+                p Well this third if statement was basic.
+            ~% end
+            <h1>And the Loop</h1>
+            ~% for x in range(5)
+                ~py x2 = 1+1
+                p The next line will be a lower number! {x} inc {x2}
+            ~% end
+        </div>
+	</body>
+	~= I'll comment here also
+</html>
